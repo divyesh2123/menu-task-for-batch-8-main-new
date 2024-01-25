@@ -82,23 +82,67 @@ const menu = [
 ];
 
 
-let mynewmenu = menu.map(function(v,i) {
 
 
-  return ` <article class="menu-item">
-  <img src="${v.img}" alt="menu item" class="photo" />
-  <div class="item-info">
-    <header>
-      <h4>${v.title}</h4>
-      <h4 class="price">${v.price}</h4>
-    </header>
-    <p class="item-text">
-     ${v.desc}
-    </p>
-  </div>
-</article>`
+function display(mydata)
+{
+  let mynewmenu = mydata.map(function(v,i) {
 
+
+    return ` <article class="menu-item">
+    <img src="${v.img}" alt="menu item" class="photo" />
+    <div class="item-info">
+      <header>
+        <h4>${v.title}</h4>
+        <h4 class="price">${v.price}</h4>
+      </header>
+      <p class="item-text">
+       ${v.desc}
+      </p>
+    </div>
+  </article>`
+  
+  })
+
+  document.getElementById("menu").innerHTML = mynewmenu.join("");
+
+}
+
+
+display(menu);
+let mybutton = menu.map(function(v,i) {
+
+  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`
 })
 
+console.log('first', mybutton);
 
-document.getElementById("menu").innerHTML = mynewmenu.join("");
+
+document.getElementById("btn").innerHTML = mybutton.join("");
+
+
+
+function searchValue()
+{
+  let searchTerm = document.getElementById("searchTerm").
+  value.toLowerCase();
+
+  let  p = menu.filter(function(v) {
+
+   return  v.title.toLowerCase().includes(searchTerm);
+  });
+
+  display(p);
+
+  console.log(p);
+}
+
+function filterByCategory(category)
+{
+  let categoryfilters = menu.filter(function(v) {
+
+   return v.category == category;
+  })
+
+  display(categoryfilters);
+}
