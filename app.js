@@ -146,3 +146,45 @@ function filterByCategory(category)
 
   display(categoryfilters);
 }
+
+function pricehightolow()
+{
+  menu.sort(function(a,b) {
+
+    return b.price - a.price;
+
+  })
+
+  display(menu);
+
+}
+
+function pricelowtohigh()
+{
+  menu.sort(function(a,b) {
+
+    return a.price - b.price;
+
+  })
+
+  display(menu);
+
+}
+
+// function sortdata(props,order)
+// {
+  
+//   menu.sort(function(a,b) {
+
+//     if(order == "DEC" )
+//     return b[props] - a[props];
+//     else
+    
+//     return a[props] - b[props];
+    
+
+//   })
+
+//   display(menu);
+
+// }
