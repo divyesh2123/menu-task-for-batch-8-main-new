@@ -110,9 +110,26 @@ function display(mydata)
 
 
 display(menu);
-let mybutton = menu.map(function(v,i) {
 
-  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`
+let categories = menu.reduce(function(pre,v){
+
+  if(pre.includes(v.category)== false)
+  {
+    pre.push(v.category);
+  }
+
+  return pre;
+
+
+
+},[])
+
+categories.push("All");
+
+console.log(categories);
+let mybutton = categories.map(function(v,i) {
+
+  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v}')">${v}</button>`
 })
 
 console.log('first', mybutton);
@@ -141,7 +158,7 @@ function filterByCategory(category)
 {
   let categoryfilters = menu.filter(function(v) {
 
-   return v.category == category;
+   return v.category == category || category == "All";
   })
 
   display(categoryfilters);
